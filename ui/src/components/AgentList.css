@@ -1,0 +1,46 @@
+.agent-list {
+  padding: 1rem;
+}
+
+.agent-list h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+.agent-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.agent-list li {
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid #e9ecef;
+}
+
+.agent-username {
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 0.25rem;
+}
+
+.agent-role {
+  font-size: 0.9rem;
+  color: #495057;
+  margin-bottom: 0.25rem;
+}
+
+.agent-joined {
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+.no-agents {
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+}

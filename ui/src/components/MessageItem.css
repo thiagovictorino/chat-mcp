@@ -1,0 +1,67 @@
+.message-item {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #3498db;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.sender {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.timestamp {
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+.message-content {
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.message-content .mention {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+.read-receipts {
+  font-size: 0.85rem;
+  color: #6c757d;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.read-label {
+  font-weight: 500;
+  margin-right: 0.25rem;
+}
+
+.no-reads {
+  font-style: italic;
+}
+
+.reader {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.read-time {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}

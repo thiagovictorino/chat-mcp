@@ -1,0 +1,152 @@
+.channel-delete-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.channel-delete-modal {
+  background-color: white;
+  border-radius: 12px;
+  padding: 32px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.delete-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  color: #111827;
+}
+
+.delete-warning {
+  background-color: #fef2f2;
+  border: 1px solid #fee2e2;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.warning-icon {
+  font-size: 24px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.delete-warning p {
+  color: #991b1b;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+}
+
+.delete-warning ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #7f1d1d;
+}
+
+.delete-warning li {
+  margin: 4px 0;
+}
+
+.delete-confirmation {
+  margin-bottom: 24px;
+}
+
+.delete-confirmation p {
+  color: #374151;
+  margin: 0 0 12px 0;
+}
+
+.delete-confirmation strong {
+  color: #111827;
+  font-weight: 600;
+}
+
+.channel-name-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.channel-name-input:focus {
+  outline: none;
+  border-color: #ef4444;
+}
+
+.delete-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.delete-cancel,
+.delete-confirm {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: var(--min-touch-target);
+  min-height: var(--min-touch-target);
+}
+
+.delete-cancel {
+  background-color: #f3f4f6;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+}
+
+.delete-cancel:hover:not(:disabled) {
+  background-color: #e5e7eb;
+}
+
+.delete-cancel:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.delete-confirm {
+  background-color: #dc2626;
+  color: white;
+  border: none;
+}
+
+.delete-confirm:hover:not(.disabled) {
+  background-color: #b91c1c;
+}
+
+.delete-confirm.disabled {
+  background-color: #fca5a5;
+  cursor: not-allowed;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .channel-delete-modal {
+    padding: 24px;
+    margin-bottom: var(--tab-bar-height);
+  }
+  
+  .delete-actions {
+    flex-direction: column-reverse;
+  }
+  
+  .delete-cancel,
+  .delete-confirm {
+    width: 100%;
+  }
+}

@@ -1,0 +1,258 @@
+.enhanced-message-item {
+  padding: 16px;
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s;
+}
+
+.enhanced-message-item:hover {
+  background-color: #f9fafb;
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.sender {
+  font-weight: 600;
+  color: #111827;
+}
+
+.timestamp {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.message-content {
+  color: #374151;
+  line-height: 1.6;
+}
+
+.message-content p {
+  margin: 0 0 8px 0;
+}
+
+.message-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Headers */
+.message-h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin: 24px 0 16px 0;
+  color: #111827;
+  line-height: 1.2;
+}
+
+.message-h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 20px 0 12px 0;
+  color: #1f2937;
+  line-height: 1.3;
+}
+
+.message-h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 16px 0 8px 0;
+  color: #374151;
+  line-height: 1.4;
+}
+
+.message-content h1:first-child,
+.message-content h2:first-child,
+.message-content h3:first-child {
+  margin-top: 0;
+}
+
+/* Text styles */
+.message-bold {
+  font-weight: 600;
+  color: #111827;
+}
+
+.message-italic {
+  font-style: italic;
+}
+
+/* Mentions */
+.mention {
+  color: var(--nav-active);
+  background-color: rgba(37, 99, 235, 0.1);
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.95em;
+  white-space: nowrap;
+}
+
+/* Inline code */
+.inline-code {
+  background-color: #f3f4f6;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.875em;
+  color: #dc2626;
+  font-weight: 500;
+}
+
+/* Code blocks */
+.code-block-wrapper {
+  margin: 16px 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.code-block-header {
+  background-color: #f3f4f6;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.code-language {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+}
+
+.copy-button {
+  background: none;
+  border: 1px solid #d1d5db;
+  color: #4b5563;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.copy-button:hover {
+  background-color: white;
+  border-color: #9ca3af;
+}
+
+/* Tables */
+.table-wrapper {
+  overflow-x: auto;
+  margin: 8px 0;
+}
+
+.table-wrapper table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 500px;
+}
+
+.table-wrapper th,
+.table-wrapper td {
+  border: 1px solid #e5e7eb;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.table-wrapper th {
+  background-color: #f3f4f6;
+  font-weight: 600;
+}
+
+.table-wrapper tr:hover {
+  background-color: #f9fafb;
+}
+
+/* Lists */
+.message-list {
+  margin: 12px 0;
+  padding-left: 24px;
+}
+
+.message-list-item {
+  margin: 6px 0;
+  line-height: 1.6;
+}
+
+.message-list.ordered {
+  list-style-type: decimal;
+}
+
+/* Links */
+.message-link {
+  color: var(--nav-active);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.message-link:hover {
+  border-bottom-color: var(--nav-active);
+}
+
+/* Blockquotes */
+.message-quote {
+  border-left: 4px solid #ddd6fe;
+  padding: 12px 20px;
+  margin: 16px 0;
+  background-color: #f9fafb;
+  border-radius: 0 8px 8px 0;
+  color: #4b5563;
+  font-style: italic;
+}
+
+/* Read receipts */
+.read-receipts {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.read-indicator {
+  font-size: 12px;
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: help;
+}
+
+/* Typing indicator */
+.typing-indicator {
+  padding: 16px;
+  color: var(--typing-text-color);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.typing-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.typing-dot {
+  width: var(--typing-dot-size);
+  height: var(--typing-dot-size);
+  background-color: var(--typing-text-color);
+  border-radius: 50%;
+  animation: var(--typing-animation);
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}

@@ -1,0 +1,90 @@
+.channel-list {
+  padding: 1rem;
+}
+
+.channel-list h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+  color: #2c3e50;
+}
+
+.channel-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.channel-list li {
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  background-color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.channel-list li:hover {
+  background-color: #f8f9fa;
+}
+
+.channel-list li.selected {
+  background-color: #3498db;
+  color: white;
+}
+
+.channel-name {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.channel-info {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.channel-description {
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  opacity: 0.7;
+}
+
+.no-channels {
+  text-align: center;
+  color: #7f8c8d;
+}
+
+.channel-list-loading,
+.channel-list-error {
+  text-align: center;
+  padding: 2rem;
+  color: #7f8c8d;
+}
+
+.channel-content {
+  flex: 1;
+}
+
+.channel-delete-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  opacity: 0;
+  min-width: var(--min-touch-target);
+  min-height: var(--min-touch-target);
+}
+
+.channel-list li:hover .channel-delete-btn {
+  opacity: 0.7;
+}
+
+.channel-delete-btn:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+  opacity: 1 !important;
+}

@@ -1,0 +1,67 @@
+:root {
+  /* Navigation Colors */
+  --nav-default: #4B5563;
+  --nav-hover: #1F2937;
+  --nav-active: #2563EB;
+  --nav-disabled: #9CA3AF;
+  
+  /* High Contrast Mode */
+  --nav-hc-default: #000000;
+  --nav-hc-active: #0052CC;
+  --nav-hc-bg: #FFFFFF;
+  
+  /* Spacing & Measurements */
+  --nav-height: 64px;
+  --nav-item-padding: 16px 24px;
+  --nav-icon-size: 20px;
+  --nav-gap: 8px;
+  
+  /* Mobile/Tablet */
+  --tab-bar-height: 72px;
+  --tab-touch-target: 48px;
+  --tab-icon-size: 24px;
+  
+  /* Typography */
+  --nav-font-size: 16px;
+  --nav-font-weight-default: 500;
+  --nav-font-weight-active: 600;
+  --tab-label-size: 12px;
+  --tab-label-active: 14px;
+  
+  /* Animations */
+  --transition-default: all 0.2s ease-out;
+  --hover-transform: translateY(-2px);
+  --hover-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  
+  /* Toast Notifications */
+  --toast-bg: #1F2937;
+  --toast-text: #FFFFFF;
+  --toast-action: #60A5FA;
+  --toast-padding: 16px 24px;
+  --toast-radius: 8px;
+  
+  /* Typing Indicators */
+  --typing-text-color: #6B7280;
+  --typing-dot-size: 4px;
+  --typing-animation: pulse 1.4s infinite;
+  
+  /* Touch Target Minimum */
+  --min-touch-target: 48px;
+}
+
+/* High Contrast Mode */
+[data-theme="high-contrast"] {
+  --nav-default: var(--nav-hc-default);
+  --nav-active: var(--nav-hc-active);
+  --nav-bg: var(--nav-hc-bg);
+}
+
+/* Animation Keyframes */
+@keyframes pulse {
+  0%, 60%, 100% {
+    opacity: 0.3;
+  }
+  30% {
+    opacity: 1;
+  }
+}

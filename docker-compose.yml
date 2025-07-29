@@ -1,0 +1,42 @@
+services:
+  mcp-server:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./mcp_server:/app/mcp_server
+      - ./tests:/app/tests
+      - ./pytest.ini:/app/pytest.ini
+      - ./data:/app/data
+      - ./logs:/app/logs
+    environment:
+      - MCP_HOST=0.0.0.0
+      - MCP_PORT=8000
+      - DATABASE_PATH=/app/data/chat.db
+      - LOG_FILE_PATH=/app/logs/chat-mcp.log
+    restart: unless-stopped
+
+  api-server:
+    build: .
+    command: python -m mcp_server.api_server
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./mcp_server:/app/mcp_server
+      - ./data:/app/data
+      - ./logs:/app/logs
+    environment:
+      - DATABASE_PATH=/app/data/chat.db
+      - LOG_FILE_PATH=/app/logs/chat-mcp.log
+    depends_on:
+      - mcp-server
+    restart: unless-stopped
+
+  ui:
+    build: ./ui
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8001
+    depends_on:
+      - api-server

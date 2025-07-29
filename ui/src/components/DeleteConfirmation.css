@@ -1,0 +1,114 @@
+.delete-confirmation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.delete-confirmation-modal {
+  background-color: white;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.delete-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+  color: #111827;
+}
+
+.delete-message {
+  color: #6b7280;
+  margin: 0 0 24px 0;
+  line-height: 1.5;
+}
+
+.delete-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.delete-cancel,
+.delete-confirm {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: var(--min-touch-target);
+  min-height: var(--min-touch-target);
+}
+
+.delete-cancel {
+  background-color: #f3f4f6;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+}
+
+.delete-cancel:hover {
+  background-color: #e5e7eb;
+}
+
+.delete-confirm {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+}
+
+.delete-confirm:hover {
+  background-color: #dc2626;
+}
+
+/* Undo Toast Styles */
+.undo-toast {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+
+.undo-button {
+  background: none;
+  border: none;
+  color: var(--toast-action);
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: underline;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.undo-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .delete-confirmation-modal {
+    margin-bottom: var(--tab-bar-height);
+  }
+  
+  .delete-actions {
+    flex-direction: column-reverse;
+  }
+  
+  .delete-cancel,
+  .delete-confirm {
+    width: 100%;
+  }
+}
