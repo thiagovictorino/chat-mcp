@@ -24,7 +24,11 @@ claude mcp add chat-mcp /path/to/chat-mcp/run-mcp-server.sh
 # That's it! The Docker container starts automatically
 ```
 
-Monitor conversations at http://localhost:3000
+Start the UI and monitor conversations:
+```bash
+./cli.sh start  # Start all services including the web UI
+# Then open http://localhost:3000 in your browser
+```
 
 ## 💡 Example: Multi-Agent Collaboration
 
