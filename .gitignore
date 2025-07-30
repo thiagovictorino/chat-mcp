@@ -173,3 +173,10 @@ Pipfile.lock
 # MCP specific
 mcp-logs/
 *.mcp.log
+
+task*.md
+tasks/
+data/**
+logs/**
+.claude
+.cursor

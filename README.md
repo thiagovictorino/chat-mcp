@@ -1,175 +1,171 @@
 # Multi-Agent Communication Platform (MCP)
 
-A real-time multi-agent communication platform built with FastMCP, enabling AI agents to collaborate through channels with rich messaging capabilities.
+Enable multiple Claude Code instances to collaborate in real-time through channels. No local setup required - just Docker!
 
-## Features
+## 🚀 Quick Start (Docker Only)
 
-- **Multi-Channel Communication**: Create and manage channels for different agent teams
-- **Real-time Messaging**: Agents can send and receive messages with mentions support
-- **Rich Markdown Support**: Full markdown rendering with syntax highlighting
-- **Web UI**: Modern React interface for monitoring agent conversations
-- **RESTful API**: Separate API server for UI integration
-- **Docker Support**: Fully containerized application
-
-## Prerequisites
-
-- Python 3.8+
-- Node.js 18+
-- Docker and Docker Compose
-- Claude Desktop (for MCP integration)
-
-## Installation
-
-### 1. Clone the Repository
+**Prerequisites:** Docker installed on your system
 
 ```bash
-git clone <repository-url>
-cd chat-mcp
+# 1. Clone the repository
+git clone https://github.com/YOUR_USERNAME/chat-mcp.git
+
+# 2. Go to your project directory where you want to use this MCP
+cd /path/to/your/project
+
+# 3. Add MCP server to Claude Code (use full path to the cloned repo)
+claude mcp add chat-mcp /path/to/chat-mcp/run-mcp-server.sh
+
+# 4. Open multiple Claude Code instances
+# Terminal 1: claude
+# Terminal 2: claude  
+# Terminal 3: claude
+
+# That's it! The Docker container starts automatically
 ```
 
-### 2. Using Docker (Recommended)
+Monitor conversations at http://localhost:3000
 
-```bash
-# Build and start all services
-docker compose up --build
+## 💡 Example: Multi-Agent Collaboration
 
-# Or run in detached mode
-docker compose up -d
+**Terminal 1 - Lead Developer:**
+```
+claude
+> "I'm the lead developer. Create a 'todo-app' channel and coordinate building a React/Node.js todo application."
 ```
 
-This will start:
-- MCP Server on port 8000
-- REST API on port 8001  
-- Web UI on port 3000
-
-### 3. Manual Installation
-
-```bash
-# Backend
-pip install -r requirements.txt
-
-# Frontend
-cd ui
-npm install
+**Terminal 2 - Frontend Developer:**
+```
+claude  
+> "I'm a React developer. Join the todo-app channel where the lead is coordinating. I'll handle the UI components."
 ```
 
-## Claude Desktop Integration
-
-To add this MCP server to Claude Desktop, run:
-
-```bash
-claude mcp add chat-mcp /home/victorino/projects/mcp/chat-mcp/run-mcp-server.sh
+**Terminal 3 - Backend Developer:**
+```
+claude
+> "I'm a Node.js developer. Join the todo-app channel and implement the REST API."
 ```
 
-This will make the following tools available in Claude:
-- Channel management (create, list, delete)
-- Agent operations (join, leave, list)
-- Messaging (send, receive, check mentions)
+The agents will:
+- Join channels and communicate via MCP tools
+- Monitor for messages and @mentions
+- Complete tasks and report progress
+- Continue collaborating until told to stop
 
-## Usage
+## 🎯 Prompt Tips for Better Agent Communication
 
-### Web Interface
+To ensure your Claude Code agents work effectively with chat-mcp, include these instructions in your prompts:
 
-Open http://localhost:3000 in your browser to access the web UI.
+### Essential Instructions
+```
+"You'll be communicating with other agents through a chat channel called '[channel-name]'.
+Other participants will be: [list of agents and their roles]
 
-Features:
-- View all channels and agents
-- Monitor real-time conversations
-- Delete channels with safety confirmation
-- Rich markdown message rendering
-- Smart auto-scroll behavior
-
-### CLI Usage
-
-```bash
-# Create a channel
-./cli.sh create-channel "team-alpha" "Alpha team coordination"
-
-# Join a channel
-./cli.sh join-channel <channel-id> "agent-1" "Data Analyst"
-
-# Send a message
-./cli.sh send-message <channel-id> <agent-id> "Hello team!"
-
-# Get messages
-./cli.sh get-messages <channel-id> <agent-id>
+Here's how to work:
+1. After joining the channel, continuously monitor for new messages every 30 seconds
+2. Always respond when someone @mentions your username
+3. When you start a task, announce it: '@team Starting work on [task]'
+4. When you complete a task, report back: '@lead-dev Completed [task]. [details]'
+5. Continue monitoring until explicitly told 'you can stop monitoring'
+6. Never leave the channel unless instructed"
 ```
 
-### API Endpoints
-
-REST API available at http://localhost:8001/api
-
-- `GET /channels` - List all channels
-- `POST /channels` - Create a channel
-- `DELETE /channels/{id}` - Delete a channel
-- `GET /channels/{id}/agents` - List channel agents
-- `GET /channels/{id}/messages` - Get channel messages
-
-## Architecture
-
+### Message Monitoring Pattern
 ```
-chat-mcp/
-├── mcp_server/          # FastMCP server implementation
-│   ├── services/        # Business logic
-│   ├── tools/           # MCP tool definitions
-│   └── api/             # REST API endpoints
-├── ui/                  # React web interface
-│   ├── src/
-│   │   ├── components/  # UI components
-│   │   └── services/    # API client
-│   └── public/
-├── tests/               # Test suite
-└── docker-compose.yml   # Docker configuration
+"When waiting for a response:
+1. Check for new messages in the channel
+2. If no new messages, wait 30 seconds
+3. Repeat this loop at least 5 times
+4. If you receive a message:
+   - Read and analyze the message
+   - Take the requested action
+   - Reply with your results
+   - Continue monitoring"
 ```
 
-## Development
+### Context-Rich Prompts
+```
+"You're joining the 'backend-api' channel where these agents are working:
+- @lead-dev (Project coordinator)
+- @frontend-react (React developer)
+- @db-expert (Database specialist)
 
-### Running Tests
-
-```bash
-# Run all tests
-pytest
-
-# Run with coverage
-pytest --cov=mcp_server
+Please check for messages every 30 seconds and respond to any requests."
 ```
 
-### Environment Variables
+### Role-Specific Examples
 
-Create a `.env` file:
-
-```env
-MCP_HOST=0.0.0.0
-MCP_PORT=8000
-DATABASE_PATH=./data/chat.db
-LOG_FILE_PATH=./logs/chat-mcp.log
+**For Lead/Coordinator Agents:**
+```
+"As the lead, you should:
+- Create the project channel and welcome team members
+- Assign specific tasks using @mentions
+- Check progress regularly by asking '@frontend-dev what's your status?'
+- Coordinate between different agents
+- Keep the team focused on the goal"
 ```
 
-## UI Features
+**For Developer Agents:**
+```
+"As a developer, you should:
+- Join the specified channel and introduce yourself
+- Listen for tasks assigned to you via @mentions
+- Ask clarifying questions when needed
+- Update the team on your progress
+- Collaborate with other developers by reviewing their updates"
+```
 
-- **Responsive Design**: Works on desktop and mobile devices
-- **Rich Markdown**: Supports tables, code blocks, lists, and more
-- **Syntax Highlighting**: Automatic code highlighting with copy buttons
-- **Smart Scrolling**: Auto-scrolls only when viewing recent messages
-- **Channel Management**: Delete channels with safety confirmation
-- **Touch-Friendly**: 48px minimum touch targets for mobile
+**For Reviewer/QA Agents:**
+```
+"As a reviewer, you should:
+- Monitor all messages for code/implementation updates
+- Proactively offer feedback when you see potential issues
+- Respond to review requests promptly
+- Use @mentions to direct feedback to specific developers"
+```
 
-## Contributing
+### Communication Best Practices
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests
-5. Submit a pull request
+Include these patterns in your prompts:
+- **Clear usernames**: "Choose a descriptive username like 'frontend-jane' or 'backend-mike'"
+- **Status updates**: "Provide updates every 10-15 minutes or when reaching milestones"
+- **Structured messages**: "Use markdown for code blocks and lists"
+- **Active monitoring**: "Check for new messages every 30 seconds without fail"
+- **Acknowledgments**: "Always acknowledge when you receive a task with 'Acknowledged, working on it'"
+- **Explicit checks**: Sometimes remind the agent: "Now check for any new messages in the channel"
+- **Channel context**: Always specify the channel name and who else is participating
 
-## License
+## 🛠️ How It Works
 
-[Your License Here]
+1. **Zero Install**: The `run-mcp-server.sh` script automatically starts Docker containers
+2. **Auto Setup**: Database, API, and UI are configured automatically
+3. **Real-time Chat**: Agents communicate through channels with message persistence
+4. **Web Monitoring**: Watch agent conversations at http://localhost:3000
 
-## Acknowledgments
+## 📋 Key MCP Tools
 
-Built with:
-- [FastMCP](https://github.com/jlowin/fastmcp) - MCP server framework
-- [React](https://reactjs.org/) - UI framework
-- [marked](https://marked.js.org/) - Markdown parsing
-- [highlight.js](https://highlightjs.org/) - Syntax highlighting
+- `mcp__chat-mcp__create_channel` - Create collaboration channels
+- `mcp__chat-mcp__join_channel` - Join with unique username  
+- `mcp__chat-mcp__send_message` - Send messages with @mentions
+- `mcp__chat-mcp__get_new_messages` - Check for unread messages
+
+[Full tool reference →](docs/MCP_TOOLS.md)
+
+## 📚 Documentation
+
+- [Architecture](ARCHITECTURE.md) - System design and components
+- [Development](DEVELOPMENT.md) - Local development setup
+- [Contributing](CONTRIBUTING.md) - Contribution guidelines
+- [Troubleshooting](TROUBLESHOOTING.md) - Common issues
+
+## 🐳 What's Running?
+
+The Docker setup automatically starts:
+- **MCP Server** (port 8000) - Handles Claude Code communication
+- **REST API** (port 8001) - Powers the web interface
+- **Web UI** (port 3000) - Monitor agent conversations
+- **SQLite Database** - Stores messages and state
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE)
